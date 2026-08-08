@@ -37,7 +37,7 @@ type Props = {
                                                                                                                                       disabled={pending}
                                                                                                                                               className="rounded-lg bg-blue-400 px-2 py-3 text-white disabled:opacity-50"
                                                                                                                                                     >
-                                                                                                                                                            {pending ? "Adding..." : "Add Task"}
+                                                                                                                                                            {pending ? "Adding..." : "Add"}
                                                                                                                                                                   </button>
 
                                                                                                                                                                         {state?.error && (
