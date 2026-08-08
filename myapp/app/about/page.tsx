@@ -6,7 +6,7 @@ export default function AboutPage() {
       <div className="mx-auto max-w-3xl">
         {/* Header */}
         <section className="mb-10">
-          <Link href="/dashboard" className="text-4xl text-blue-600 hover:underline">
+          <Link href="/" className="text-4xl text-blue-600 hover:underline">
  →
           </Link>
 
