@@ -55,12 +55,11 @@ export default async function ProjectPage({
             {project.name}
           </h1>
             <Link
-    
-                            className="rounded-lg border px-4 py-2  text-gray-500 text-4xl" 
-                                  >
-                                           →
-
-                                                </Link>
+  href="/dashboard"
+  className="rounded-lg border px-4 py-2 text-gray-500 text-4xl"
+>
+  →
+</Link>
         </div>
 
         {/* Create Task */}
