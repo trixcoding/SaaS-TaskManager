@@ -36,6 +36,13 @@ export default async function HomePage() {
             Register
           </Link>
         </div>
+
+        <Link
+          href="/about"
+          className="mt-6 inline-block text-sm text-gray-400 hover:text-blue-400 transition"
+        >
+          Technical notes →
+        </Link>
       </div>
     </main>
   );
