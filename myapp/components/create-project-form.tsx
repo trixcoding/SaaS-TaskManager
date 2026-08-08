@@ -17,7 +17,7 @@ export default function CreateProjectForm() {
                                           name="name"
                                                   placeholder="Project name"
                                                           required
-                                                                  className="flex-1 rounded-lg border px-2 py-3"
+                                                                  className=" text-gray-500 flex-1 rounded-lg border px-2 py-3"
                                                                         />
 
                                                                               <button
