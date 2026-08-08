@@ -58,7 +58,7 @@ export default async function ProjectPage({
 
           <Link
             href="/dashboard"
-            className="mt-3 inline-block text-sm text-gray-500 hover:underline"
+            className="mt-3 inline-block text-3xl text-gray-500 hover:underline"
           >
               ←
           </Link>
