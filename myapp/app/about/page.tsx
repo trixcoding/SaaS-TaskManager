@@ -275,29 +275,11 @@ by the current user?
           </div>
         </section>
 
-        {/* Future */}
-        <section className="mb-10 border border-gray-200 rounded-xl p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">
-            قابلیت‌های آینده
-          </h2>
-          <div className="grid gap-2.5 sm:grid-cols-2">
-            {[
-              'Multi-tenancy', 'RBAC', 'Pagination', 'Search', 'Filtering',
-              'Team Management', 'دعوت اعضا', 'Subscription', 'Billing', 'Rate Limiting',
-            ].map((item) => (
-              <div
-                key={item}
-                className="bg-gray-50 rounded-lg px-4 py-2.5 text-sm text-gray-500"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </section>
+        
 
         <div className="border-t border-gray-100 pt-6">
           <a
-            href="https://github.com/YOUR-USERNAME/task-manager"
+            href="https://github.com/trixcoding/SaaSTaskManager"
             target="_blank"
             rel="noreferrer"
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg px-5 py-2.5 transition text-sm"
