@@ -56,7 +56,7 @@ export default async function ProjectPage({
           </h1>
             <Link
     
-                            className="rounded-lg border px-4 py-2  text-gray-500 text-4xl 
+                            className="rounded-lg border px-4 py-2  text-gray-500 text-4xl" 
                                   >
                                            →
 
