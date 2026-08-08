@@ -89,7 +89,7 @@ export default function TaskItem({
         <span
           className={`flex h-5 w-5 items-center justify-center rounded border transition-colors ${
             optimisticCompleted
-              ? "border-black bg-black text-white"
+              ? "border-blue bg-blue-600 text-white"
               : "border-gray-300"
           }`}
         >
@@ -99,7 +99,7 @@ export default function TaskItem({
         <span
           className={
             optimisticCompleted
-              ? "text-gray-400 line-through"
+              ? "text-blue-400 line-through"
               : ""
           }
         >
