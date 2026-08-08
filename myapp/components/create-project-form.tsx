@@ -25,7 +25,7 @@ export default function CreateProjectForm() {
                                                                                               disabled={pending}
                                                                                                       className="rounded-lg bg-blue-400 px-2 py-3 text-white disabled:opacity-50"
                                                                                                             >
-                                                                                                                    {pending ? "Creating..." : "Create"}
+                                                                                                                    {pending ? "..." : "Create"}
                                                                                                                           </button>
 
                                                                                                                                 {state?.error && (
