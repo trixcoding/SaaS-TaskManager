@@ -1,6 +1,15 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function HomePage() {
+import { getCurrentUser } from "../lib/auth";
+
+export default async function HomePage() {
+  const user = await getCurrentUser();
+
+  if (user) {
+    redirect("/dashboard");
+  }
+
   return (
     <main className="flex min-h-screen items-center justify-center">
       <div className="text-center">
