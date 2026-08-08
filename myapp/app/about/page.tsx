@@ -7,7 +7,7 @@ export default function AboutPage() {
         {/* Header */}
         <section className="mb-10">
           <Link href="/dashboard" className="text-sm text-blue-600 hover:underline">
-            بازگشت به داشبورد ←
+
           </Link>
 
           <span className="inline-block bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full mt-4 mb-3">
@@ -50,7 +50,6 @@ export default function AboutPage() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
               'Next.js',
-              'React',
               'PostgreSQL',
               'Prisma',
               'Server Actions',
