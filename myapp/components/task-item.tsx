@@ -100,7 +100,7 @@ export default function TaskItem({
           className={
             optimisticCompleted
               ? "text-blue-400 line-through"
-              : ""
+              : "text-gray-400"
           }
         >
           {title}
