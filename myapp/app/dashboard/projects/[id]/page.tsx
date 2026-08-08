@@ -47,18 +47,18 @@ export default async function ProjectPage({
 
         {/* Project Header */}
         <div>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-400">
             Project
           </p>
 
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-3xl  text-gray-500 font-bold">
             {project.name}
           </h1>
         </div>
 
         {/* Create Task */}
         <section className="rounded-xl border bg-white p-6">
-          <h2 className="mb-4 text-xl font-semibold">
+          <h2 className=" text-gray-500 mb-4 text-xl font-semibold">
             Create Task
           </h2>
 
@@ -69,7 +69,7 @@ export default async function ProjectPage({
 
         {/* Tasks */}
         <section>
-          <h2 className="mb-4 text-xl font-semibold">
+          <h2 className=" text-gray-500 mb-4 text-xl font-semibold">
             Tasks
           </h2>
 
