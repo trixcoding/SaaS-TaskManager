@@ -1,6 +1,9 @@
 "use client";
 
-import { useTransition } from "react";
+import {
+  useOptimistic,
+  useTransition,
+} from "react";
 
 import {
   deleteTaskAction,
@@ -21,12 +24,22 @@ export default function TaskItem({
   const [pending, startTransition] =
     useTransition();
 
+  const [optimisticCompleted, setOptimisticCompleted] =
+    useOptimistic(completed);
+
+  const [optimisticDeleted, setOptimisticDeleted] =
+    useOptimistic(false);
+
   function toggle() {
     const formData = new FormData();
 
     formData.set("taskId", id);
 
     startTransition(async () => {
+      setOptimisticCompleted(
+        !optimisticCompleted
+      );
+
       await toggleTaskAction(formData);
     });
   }
@@ -37,28 +50,41 @@ export default function TaskItem({
     formData.set("taskId", id);
 
     startTransition(async () => {
+      setOptimisticDeleted(true);
+
       await deleteTaskAction(formData);
     });
   }
 
+  if (optimisticDeleted) {
+    return null;
+  }
+
   return (
-    <div className="flex items-center justify-between rounded-lg border bg-white p-4">
+    <div
+      className={`flex items-center justify-between rounded-lg border bg-white p-4 transition-opacity ${
+        pending ? "opacity-60" : "opacity-100"
+      }`}
+    >
       <button
+        type="button"
         onClick={toggle}
         disabled={pending}
         className="flex items-center gap-3"
       >
         <span
-          className={`flex h-5 w-5 items-center justify-center rounded border ${
-            completed ? "bg-black text-white" : ""
+          className={`flex h-5 w-5 items-center justify-center rounded border transition-colors ${
+            optimisticCompleted
+              ? "border-black bg-black text-white"
+              : "border-gray-300"
           }`}
         >
-          {completed ? "✓" : ""}
+          {optimisticCompleted ? "✓" : ""}
         </span>
 
         <span
           className={
-            completed
+            optimisticCompleted
               ? "text-gray-400 line-through"
               : ""
           }
@@ -68,11 +94,12 @@ export default function TaskItem({
       </button>
 
       <button
+        type="button"
         onClick={remove}
         disabled={pending}
-        className="text-sm text-red-600"
+        className="text-sm text-red-600 disabled:opacity-50"
       >
-        Delete
+        {pending ? "Deleting..." : "Delete"}
       </button>
     </div>
   );
