@@ -5,7 +5,7 @@ import { useTransition } from "react";
 import {
   deleteTaskAction,
   toggleTaskAction,
-} from "../../actions/task";
+} from "../actions/task";
 
 type Props = {
   id: string;
