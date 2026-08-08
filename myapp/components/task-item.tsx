@@ -21,21 +21,31 @@ export default function TaskItem({
   title,
   completed,
 }: Props) {
-  const [pending, startTransition] =
-    useTransition();
+  const [
+    togglePending,
+    startToggleTransition,
+  ] = useTransition();
 
-  const [optimisticCompleted, setOptimisticCompleted] =
-    useOptimistic(completed);
+  const [
+    deletePending,
+    startDeleteTransition,
+  ] = useTransition();
 
-  const [optimisticDeleted, setOptimisticDeleted] =
-    useOptimistic(false);
+  const [
+    optimisticCompleted,
+    setOptimisticCompleted,
+  ] = useOptimistic(completed);
+
+  const [
+    optimisticDeleted,
+    setOptimisticDeleted,
+  ] = useOptimistic(false);
 
   function toggle() {
     const formData = new FormData();
-
     formData.set("taskId", id);
 
-    startTransition(async () => {
+    startToggleTransition(async () => {
       setOptimisticCompleted(
         !optimisticCompleted
       );
@@ -46,10 +56,9 @@ export default function TaskItem({
 
   function remove() {
     const formData = new FormData();
-
     formData.set("taskId", id);
 
-    startTransition(async () => {
+    startDeleteTransition(async () => {
       setOptimisticDeleted(true);
 
       await deleteTaskAction(formData);
@@ -63,13 +72,18 @@ export default function TaskItem({
   return (
     <div
       className={`flex items-center justify-between rounded-lg border bg-white p-4 transition-opacity ${
-        pending ? "opacity-60" : "opacity-100"
+        deletePending
+          ? "opacity-50"
+          : "opacity-100"
       }`}
     >
+      {/* Task */}
       <button
         type="button"
         onClick={toggle}
-        disabled={pending}
+        disabled={
+          togglePending || deletePending
+        }
         className="flex items-center gap-3"
       >
         <span
@@ -93,13 +107,18 @@ export default function TaskItem({
         </span>
       </button>
 
+      {/* Delete */}
       <button
         type="button"
         onClick={remove}
-        disabled={pending}
+        disabled={
+          togglePending || deletePending
+        }
         className="text-sm text-red-600 disabled:opacity-50"
       >
-        {pending ? "Deleting..." : "Delete"}
+        {deletePending
+          ? "Deleting..."
+          : "Delete"}
       </button>
     </div>
   );
