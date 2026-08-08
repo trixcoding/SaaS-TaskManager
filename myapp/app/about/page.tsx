@@ -7,7 +7,7 @@ export default function AboutPage() {
         {/* Header */}
         <section className="mb-10">
           <Link href="/dashboard" className="text-sm text-blue-600 hover:underline">
-
+ →
           </Link>
 
           <span className="inline-block bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full mt-4 mb-3">
