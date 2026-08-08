@@ -17,7 +17,7 @@ type Props = {
             return (
                 <form
                       action={formAction}
-                            className="flex gap-3"
+                            className="flex gap-1"
                                 >
                                       <input
                                               type="hidden"
@@ -29,13 +29,13 @@ type Props = {
                                                                                   name="title"
                                                                                           placeholder="Task title"
                                                                                                   required
-                                                                                                          className="flex-1 rounded-lg border px-4 py-3"
+                                                                                                          className="flex-1 rounded-lg border px-2 py-3"
                                                                                                                 />
 
                                                                                                                       <button
                                                                                                                               type="submit"
                                                                                                                                       disabled={pending}
-                                                                                                                                              className="rounded-lg bg-blue-400 px-5 py-3 text-white disabled:opacity-50"
+                                                                                                                                              className="rounded-lg bg-blue-400 px-2 py-3 text-white disabled:opacity-50"
                                                                                                                                                     >
                                                                                                                                                             {pending ? "Adding..." : "Add Task"}
                                                                                                                                                                   </button>
