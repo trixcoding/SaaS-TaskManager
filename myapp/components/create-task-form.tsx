@@ -35,7 +35,7 @@ type Props = {
                                                                                                                       <button
                                                                                                                               type="submit"
                                                                                                                                       disabled={pending}
-                                                                                                                                              className="rounded-lg bg-black px-5 py-3 text-white disabled:opacity-50"
+                                                                                                                                              className="rounded-lg bg-blue-400 px-5 py-3 text-white disabled:opacity-50"
                                                                                                                                                     >
                                                                                                                                                             {pending ? "Adding..." : "Add Task"}
                                                                                                                                                                   </button>
