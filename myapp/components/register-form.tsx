@@ -80,7 +80,7 @@ export default function RegisterForm() {
                 Already have an account?{" "}
                 <Link
                     href="/login"
-                    className="font-medium text-green-400 underline"
+                    className="font-medium text-blue-400 underline"
                 >
                     Login
                 </Link>
