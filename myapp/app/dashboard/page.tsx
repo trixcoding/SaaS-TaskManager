@@ -35,7 +35,7 @@ export default async function DashboardPage() {
       <header className="border-b bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div>
-            <h1 className="text-xl font-bold">
+            <h1 className="text-xl text-gray-200 font-bold">
               Mini SaaS
             </h1>
 
@@ -51,7 +51,7 @@ export default async function DashboardPage() {
       <div className="mx-auto max-w-6xl space-y-8 px-6 py-10">
         {/* Dashboard Header */}
         <section>
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-3xl text-gray-500 font-bold">
             Dashboard
           </h2>
 
@@ -62,7 +62,7 @@ export default async function DashboardPage() {
 
         {/* Create Project */}
         <section className="rounded-xl border bg-white p-6">
-          <h2 className="mb-4 text-xl font-semibold">
+          <h2 className="mb-4 text-gray-500 text-xl font-semibold">
             Create Project
           </h2>
 
@@ -71,7 +71,7 @@ export default async function DashboardPage() {
 
         {/* Projects */}
         <section>
-          <h2 className="mb-4 text-xl font-semibold">
+          <h2 className="mb-4 text-xl font-semibold text-gray-500">
             Your Projects
           </h2>
 
@@ -87,7 +87,7 @@ export default async function DashboardPage() {
                   href={`/dashboard/projects/${project.id}`}
                   className="rounded-xl border bg-white p-5 transition hover:-translate-y-1 hover:shadow-md"
                 >
-                  <h3 className="font-semibold">
+                  <h3 className=" text-gray-500 font-semibold">
                     {project.name}
                   </h3>
 
