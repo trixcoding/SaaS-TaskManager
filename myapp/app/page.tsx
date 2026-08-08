@@ -15,7 +15,7 @@ export default function HomePage() {
         <div className="mt-8 flex justify-center gap-4">
           <Link
             href="/login"
-            className="rounded-lg bg-black px-6 py-3 text-white"
+            className="rounded-lg bg-blue-400 px-6 py-3 text-white"
           >
             Login
           </Link>
