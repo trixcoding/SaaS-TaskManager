@@ -11,7 +11,7 @@ export default function CreateProjectForm() {
         return (
             <form
                   action={formAction}
-                        className="flex gap-3"
+                        className="flex gap-2"
                             >
                                   <input
                                           name="name"
