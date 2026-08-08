@@ -1,5 +1,5 @@
 import { notFound, redirect } from "next/navigation";
-
+import Link from "next/navigation"; 
 import { getCurrentUser } from "../../../../lib/auth";
 import { prisma } from "../../../../lib/prisma";
 
@@ -54,6 +54,13 @@ export default async function ProjectPage({
           <h1 className="text-3xl  text-gray-500 font-bold">
             {project.name}
           </h1>
+            <Link
+    
+                            className="rounded-lg border px-4 py-2  text-gray-500 text-4xl 
+                                  >
+                                           →
+
+                                                </Link>
         </div>
 
         {/* Create Task */}
