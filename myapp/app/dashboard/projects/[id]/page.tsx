@@ -4,98 +4,94 @@ import { getCurrentUser } from "../../../../lib/auth";
 import { prisma } from "../../../../lib/prisma";
 
 import CreateTaskForm from "../../../../components/create-task-form";
+import TaskItem from "../../../../components/task-item";
 
 type Props = {
   params: Promise<{
-      id: string;
-        }>;
-        };
+    id: string;
+  }>;
+};
 
-        export default async function ProjectPage({
-          params,
-          }: Props) {
-            const user = await getCurrentUser();
+export default async function ProjectPage({
+  params,
+}: Props) {
+  const user = await getCurrentUser();
 
-              if (!user) {
-                  redirect("/login");
-                    }
+  if (!user) {
+    redirect("/login");
+  }
 
-                      const { id } = await params;
+  const { id } = await params;
 
-                        const project = await prisma.project.findFirst({
-                            where: {
-                                  id,
-                                        userId: user.id,
-                                            },
-                                                include: {
-                                                      tasks: {
-                                                              orderBy: {
-                                                                        createdAt: "desc",
-                                                                                },
-                                                                                      },
-                                                                                          },
-                                                                                            });
+  const project = await prisma.project.findFirst({
+    where: {
+      id,
+      userId: user.id,
+    },
+    include: {
+      tasks: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
+  });
 
-                                                                                              if (!project) {
-                                                                                                  notFound();
-                                                                                                    }
+  if (!project) {
+    notFound();
+  }
 
-                                                                                                      return (
-                                                                                                          <main className="min-h-screen bg-gray-50">
-                                                                                                                <div className="mx-auto max-w-4xl space-y-8 px-6 py-10">
-                                                                                                                        <div>
-                                                                                                                                  <p className="text-sm text-gray-500">
-                                                                                                                                              Project
-                                                                                                                                                        </p>
+  return (
+    <main className="min-h-screen bg-gray-50">
+      <div className="mx-auto max-w-4xl space-y-8 px-6 py-10">
 
-                                                                                                                                                                  <h1 className="text-3xl font-bold">
-                                                                                                                                                                              {project.name}
-                                                                                                                                                                                        </h1>
-                                                                                                                                                                                                </div>
+        {/* Project Header */}
+        <div>
+          <p className="text-sm text-gray-500">
+            Project
+          </p>
 
-                                                                                                                                                                                                        <section className="rounded-xl border bg-white p-6">
-                                                                                                                                                                                                                  <h2 className="mb-4 text-xl font-semibold">
-                                                                                                                                                                                                                              Create Task
-                                                                                                                                                                                                                                        </h2>
+          <h1 className="text-3xl font-bold">
+            {project.name}
+          </h1>
+        </div>
 
-                                                                                                                                                                                                                                                  <CreateTaskForm
-                                                                                                                                                                                                                                                              projectId={project.id}
-                                                                                                                                                                                                                                                                        />
-                                                                                                                                                                                                                                                                                </section>
+        {/* Create Task */}
+        <section className="rounded-xl border bg-white p-6">
+          <h2 className="mb-4 text-xl font-semibold">
+            Create Task
+          </h2>
 
-                                                                                                                                                                                                                                                                                        <section>
-                                                                                                                                                                                                                                                                                                  <h2 className="mb-4 text-xl font-semibold">
-                                                                                                                                                                                                                                                                                                              Tasks
-                                                                                                                                                                                                                                                                                                                        </h2>
+          <CreateTaskForm
+            projectId={project.id}
+          />
+        </section>
 
-                                                                                                                                                                                                                                                                                                                                  <div className="space-y-3">
-                                                                                                                                                                                                                                                                                                                                              {project.tasks.map((task) => (
-                                                                                                                                                                                                                                                                                                                                                            <div
-                                                                                                                                                                                                                                                                                                                                                                            key={task.id}
-                                                                                                                                                                                                                                                                                                                                                                                            className="rounded-lg border bg-white p-4"
-                                                                                                                                                                                                                                                                                                                                                                                                          >
-                                                                                                                                                                                                                                                                                                                                                                                                                          <div className="flex items-center justify-between">
-                                                                                                                                                                                                                                                                                                                                                                                                                                            <span
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                className={
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      task.completed
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ? "text-gray-400 line-through"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      : ""
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            >
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {task.title}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </span>
+        {/* Tasks */}
+        <section>
+          <h2 className="mb-4 text-xl font-semibold">
+            Tasks
+          </h2>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span className="text-xs text-gray-500">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {task.completed
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ? "Done"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    : "Todo"}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ))}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </section>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </main>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              );
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              }
+          {project.tasks.length === 0 ? (
+            <div className="rounded-xl border bg-white p-8 text-center text-gray-500">
+              No tasks yet.
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {project.tasks.map((task) => (
+                <TaskItem
+                  key={task.id}
+                  id={task.id}
+                  title={task.title}
+                  completed={task.completed}
+                />
+              ))}
+            </div>
+          )}
+        </section>
+
+      </div>
+    </main>
+  );
+}
