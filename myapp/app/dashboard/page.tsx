@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 import { getCurrentUser } from '../../lib/auth';
 import { prisma } from '../../lib/prisma';
-import { deleteProjectAction } from '../../lib/actions/project';
+import { deleteProjectAction } from '../../actions/project';
 
 import LogoutButton from '../../components/logout-button';
 import CreateProjectForm from '../../components/create-project-form';
