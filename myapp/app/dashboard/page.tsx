@@ -90,7 +90,7 @@ export default async function DashboardPage() {
                       type="submit"
                       className="text-xs text-red-600 hover:underline"
                     >
-                      حذف پروژه
+                      delete project
                     </button>
                   </form>
                 </div>
