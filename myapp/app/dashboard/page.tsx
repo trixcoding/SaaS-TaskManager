@@ -1,18 +1,18 @@
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
-import { getCurrentUser } from '../../lib/auth';
-import { prisma } from '../../lib/prisma';
-import { deleteProjectAction } from '../../actions/project';
+import { getCurrentUser } from "../../lib/auth";
+import { prisma } from "../../lib/prisma";
 
-import LogoutButton from '../../components/logout-button';
-import CreateProjectForm from '../../components/create-project-form';
+import LogoutButton from "../../components/logout-button";
+import CreateProjectForm from "../../components/create-project-form";
+import DeleteProjectButton from "../../components/delete-project-button";
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
 
   if (!user) {
-    redirect('/login');
+    redirect("/login");
   }
 
   const projects = await prisma.project.findMany({
@@ -27,34 +27,48 @@ export default async function DashboardPage() {
       },
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
   });
 
   return (
     <main className="min-h-screen bg-gray-50">
+      {/* Header */}
       <header className="border-b bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div>
-            <h1 className="text-xl text-gray-900 font-bold">Mini SaaS</h1>
-            <p className="text-sm text-gray-500">Welcome, {user.name}</p>
+            <h1 className="text-xl font-bold text-gray-900">
+              Mini SaaS
+            </h1>
+
+            <p className="text-sm text-gray-500">
+              Welcome, {user.name}
+            </p>
           </div>
+
           <LogoutButton />
         </div>
       </header>
 
       <div className="mx-auto max-w-6xl space-y-8 px-6 py-10">
+
         {/* Dashboard Header */}
         <section>
-          <h2 className="text-3xl text-gray-900 font-bold">Dashboard</h2>
-          <p className="mt-2 text-gray-500">Manage your projects and tasks.</p>
+          <h2 className="text-3xl font-bold text-gray-900">
+            Dashboard
+          </h2>
+
+          <p className="mt-2 text-gray-500">
+            Manage your projects and tasks.
+          </p>
         </section>
 
         {/* Create Project */}
         <section className="rounded-xl border bg-white p-6">
-          <h2 className="mb-4 text-gray-900 text-xl font-semibold">
+          <h2 className="mb-4 text-xl font-semibold text-gray-900">
             Create Project
           </h2>
+
           <CreateProjectForm />
         </section>
 
@@ -73,26 +87,32 @@ export default async function DashboardPage() {
               {projects.map((project) => (
                 <div
                   key={project.id}
-                  className="group relative rounded-xl border bg-white p-5 transition hover:-translate-y-1 hover:shadow-md"
+                  className="rounded-xl border bg-white p-5 transition hover:-translate-y-1 hover:shadow-md"
                 >
-                  <Link href={`/dashboard/projects/${project.id}`}>
-                    <h3 className="text-gray-900 font-semibold">
+                  {/* Project Info */}
+                  <div>
+                    <h3 className="font-semibold text-gray-900">
                       {project.name}
                     </h3>
+
                     <p className="mt-2 text-sm text-gray-500">
                       {project._count.tasks} tasks
                     </p>
-                  </Link>
+                  </div>
 
-                  <form action={deleteProjectAction} className="mt-4">
-                    <input type="hidden" name="projectId" value={project.id} />
-                    <button
-                      type="submit"
-                      className="text-xs text-red-600 hover:underline"
+                  {/* Actions */}
+                  <div className="mt-5 flex items-center gap-3">
+                    <Link
+                      href={`/dashboard/projects/${project.id}`}
+                      className="rounded-lg bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"
                     >
-                      delete project
-                    </button>
-                  </form>
+                      Show Tasks
+                    </Link>
+
+                    <DeleteProjectButton
+                      projectId={project.id}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
