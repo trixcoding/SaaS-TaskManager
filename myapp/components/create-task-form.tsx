@@ -29,7 +29,7 @@ type Props = {
                                                                                   name="title"
                                                                                           placeholder="Task title"
                                                                                                   required
-                                                                                                          className="flex-1 rounded-lg border px-2 py-3"
+                                                                                                          className="flex-1  text-gray-500 rounded-lg border px-2 py-3"
                                                                                                                 />
 
                                                                                                                       <button
