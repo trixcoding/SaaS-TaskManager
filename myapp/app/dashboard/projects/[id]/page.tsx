@@ -42,7 +42,7 @@ export default async function ProjectPage({
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-white">
       <div className="mx-auto max-w-4xl space-y-8 px-6 py-10">
 
         {/* Project Header */}
